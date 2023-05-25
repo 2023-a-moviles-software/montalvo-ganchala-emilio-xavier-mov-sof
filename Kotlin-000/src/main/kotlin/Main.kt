@@ -35,6 +35,21 @@ fun main(args: Array<String>) {
     val esSoltero = (estadoCivilWhen == "S")
     val coqueteo = if (esSoltero) "Si" else "No"
     calcularSueldo(20.00)
+    calcularSueldo(20.00,12.00,20.0)
+    calcularSueldo(20.00)
+
+    val sumaUno=Suma(1,1)
+    val sumados=Suma(null,1)
+    val sumaTres=Suma(1,null)
+    val sumaCuatro=Suma(null,null)
+
+    sumaUno.sumar()
+    sumados.sumar()
+    sumaTres.sumar()
+    sumaCuatro.sumar()
+    println(Suma.pi)
+    println(Suma.elevarAlCuadrado(2))
+    println(Suma.historialSumas)
 }
 
 fun imprimirNombre(nombre: String): Unit{
@@ -67,7 +82,7 @@ abstract class NumerosJava{
 
 abstract class Numeros(
     protected val numeroUno: Int,
-    private val numeroDos: Int
+    protected val numeroDos: Int
 ){
     init {//bloque de constructor primario
         this.numeroUno; this.numeroDos;
@@ -75,5 +90,47 @@ abstract class Numeros(
         println("inicializado")
     }
 
+
+}
+
+
+class Suma(
+    unoParametro: Int,
+    dosParametros: Int
+    ) : Numeros(unoParametro,dosParametros){//extendiendo y mandando parametros
+    init {
+        this.numeroUno
+        this.numeroDos
+    }
+
+    constructor(uno: Int?, dos: Int):this(
+        if(uno==null) 0 else uno, dos
+    )
+
+    constructor(uno: Int, dos: Int?):this(
+        uno,if(dos==null) 0 else dos
+    )
+
+    constructor(uno: Int?, dos: Int?):this(
+        if(uno==null) 0 else uno, if(dos==null) 0 else dos
+    )
+
+    public fun sumar(): Int{
+        val total= numeroUno + numeroDos;
+        agregarHistorial(total)
+        return total
+    }
+
+    companion object{
+        val pi=3.14
+        fun elevarAlCuadrado(num: Int):Int{
+            return num*num
+        }
+        val historialSumas = ArrayList<Int>()
+
+        fun agregarHistorial(valorNuevaSuma:Int){
+            historialSumas.add(valorNuevaSuma)
+        }
+    }
 
 }
