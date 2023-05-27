@@ -1,0 +1,6 @@
+0,Azul,Universo,2001,terror,ingles,1
+2,Morado,Universo,2001,terror,ingles,1
+3,Fuccia,Universo,2001,terror,ingles,1
+4,Fuccia,Universo,2001,terror,ingles,1
+5,Naranja,Universo,2001,terror,ingles,1
+6,Fuccia,Universo,2001,terror,ingles,1
