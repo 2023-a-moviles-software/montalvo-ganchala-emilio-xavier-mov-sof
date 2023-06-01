@@ -1,0 +1,3 @@
+0,Jose,Manuel,2023-05-26,M,peruano
+2,Juan,Manuel,2023-05-26,M,peruano
+
