@@ -57,7 +57,7 @@ class Libro {
         return this.fechaPublicacion
     }
 
-    fun getDiponible(): Boolean{
+    fun getDisponible(): Boolean{
         return this.disponible
     }
 
@@ -67,6 +67,41 @@ class Libro {
 
     fun getIdAutor():Int{
         return this.idAutor
+    }
+
+
+    fun setId(id: Int) {
+        this.id = id
+    }
+
+
+    fun setTitulo(titulo: String) {
+        this.titulo = titulo
+    }
+
+
+    fun setEditorial(editorial: String) {
+        this.editorial = editorial
+    }
+
+
+    fun setFechaPublicacion(fechaPublicacion: LocalDate) {
+        this.fechaPublicacion = fechaPublicacion
+    }
+
+
+    fun setDisponible(disponible: Boolean) {
+        this.disponible = disponible
+    }
+
+
+    fun setPrecio(precio: Double) {
+        this.precio = precio
+    }
+
+
+    fun setIdAutor(idAutor: Int) {
+        this.idAutor = idAutor
     }
 
 

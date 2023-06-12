@@ -1,2 +1,0 @@
-0,Naranja,Universo,2023-06-11,true,50.0,0
-1,Rojo,Universo,2023-06-11,true,50.0,0

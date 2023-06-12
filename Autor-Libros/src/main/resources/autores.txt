@@ -1,2 +1,3 @@
 0,Emily,Manuel,2023-06-11,M,peruano
-1,Dayana,Manuel,2023-06-11,M,peruano
+1,Manuel,Jaramillo,2001-11-06,M,Mexico
+2,Jose,Rodriguez,2021-06-11,F,ecuatoriano
