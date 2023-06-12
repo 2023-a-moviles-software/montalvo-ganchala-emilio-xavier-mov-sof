@@ -1,3 +1,2 @@
-0,Jose,Manuel,2023-05-26,M,peruano
-2,Juan,Manuel,2023-05-26,M,peruano
-
+0,Emily,Manuel,2023-06-11,M,peruano
+1,Dayana,Manuel,2023-06-11,M,peruano

@@ -37,7 +37,9 @@ class Archivo {
             var id="0"
 
             val ultimaLinea = lineas.lastOrNull()
-            if (ultimaLinea != null) {
+
+            if (ultimaLinea != null && ultimaLinea!="") {
+
                 val secciones = ultimaLinea.split(",")
                 if (secciones.isNotEmpty()) {
                     id= (secciones[0].toInt()+1).toString()
@@ -53,6 +55,7 @@ class Archivo {
             bufferedWriter.close()
         } catch (e: Exception) {
             println("Error al escribir en el archivo: ${e.message}")
+            e.printStackTrace()
         }
     }
 

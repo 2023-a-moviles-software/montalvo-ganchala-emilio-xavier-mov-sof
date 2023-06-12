@@ -42,6 +42,26 @@ class Autor{
         return this.id
     }
 
+    fun getNombre():String{
+        return this.nombre
+    }
+
+    fun getApellido():String{
+        return this.apellido
+    }
+
+    fun getfechaNacimiento():LocalDate?{
+        return this.fechaNacimiento
+    }
+
+    fun getGenero():Char{
+        return this.genero
+    }
+
+    fun getNacionalidad(): String{
+        return this.nacionalidad
+    }
+
     override fun toString(): String {
         return "$nombre,$apellido,$fechaNacimiento,$genero,$nacionalidad"
     }
