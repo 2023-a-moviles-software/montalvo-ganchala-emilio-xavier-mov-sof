@@ -105,11 +105,11 @@ class Menu {
 
         if (autor != null) {
 
-                autor.setNombre(JOptionPane.showInputDialog("Ingrese el nuevo nombre del autor"))
-                autor.setApellido(JOptionPane.showInputDialog("Ingrese el nuevo apellido del autor"))
-                autor.setFechaNacimiento(LocalDate.parse(JOptionPane.showInputDialog("Ingrese la nueva fecha de nacimiento del autor (AAAA-MM-DD)")))
-                autor.setGenero(JOptionPane.showInputDialog("Ingrese el nuevo género del autor").first())
-                autor.setNacionalidad(JOptionPane.showInputDialog("Ingrese la nueva nacionalidad del autor"))
+                autor.setNombre(JOptionPane.showInputDialog("Ingrese el nuevo nombre del autor",autor.getNombre()))
+                autor.setApellido(JOptionPane.showInputDialog("Ingrese el nuevo apellido del autor",autor.getApellido()))
+                autor.setFechaNacimiento(LocalDate.parse(JOptionPane.showInputDialog("Ingrese la nueva fecha de nacimiento del autor (AAAA-MM-DD)",autor.getFechaNacimiento())))
+                autor.setGenero(JOptionPane.showInputDialog("Ingrese el nuevo género del autor",autor.getGenero()).first())
+                autor.setNacionalidad(JOptionPane.showInputDialog("Ingrese la nueva nacionalidad del autor",autor.getNacionalidad()))
                 autorDAO.edit(autor)
                 JOptionPane.showMessageDialog(null, "Autor actualizado exitosamente")
 
@@ -174,12 +174,12 @@ class Menu {
 
         if (libro != null) {
 
-            libro.setTitulo(JOptionPane.showInputDialog("Ingrese el nuevo título del libro"))
-            libro.setEditorial(JOptionPane.showInputDialog("Ingrese la nueva editorial del libro"))
-            libro.setFechaPublicacion(LocalDate.parse(JOptionPane.showInputDialog("Ingrese la nueva fecha de publicación del libro (AAAA-MM-DD)")))
-            libro.setDisponible(JOptionPane.showInputDialog("¿Está disponible el libro? (S/N)").equals("S", ignoreCase = true))
-            libro.setPrecio(JOptionPane.showInputDialog("Ingrese el nuevo precio del libro").toDouble())
-            libro.setIdAutor(JOptionPane.showInputDialog("Ingrese el nuevo ID del autor del libro").toInt())
+            libro.setTitulo(JOptionPane.showInputDialog("Ingrese el nuevo título del libro",libro.getTitulo()))
+            libro.setEditorial(JOptionPane.showInputDialog("Ingrese la nueva editorial del libro",libro.getEditorial()))
+            libro.setFechaPublicacion(LocalDate.parse(JOptionPane.showInputDialog("Ingrese la nueva fecha de publicación del libro (AAAA-MM-DD)",libro.getFechaPublicacion())))
+            libro.setDisponible(JOptionPane.showInputDialog("¿Está disponible el libro? (S/N)","${if (libro.getDisponible()) "S" else "N"}").equals("S", ignoreCase = true))
+            libro.setPrecio(JOptionPane.showInputDialog("Ingrese el nuevo precio del libro",libro.getPrecio()).toDouble())
+            libro.setIdAutor(JOptionPane.showInputDialog("Ingrese el nuevo ID del autor del libro",libro.getIdAutor()).toInt())
 
             libroDAO.edit(libro)
 

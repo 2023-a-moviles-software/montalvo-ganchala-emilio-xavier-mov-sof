@@ -1,3 +1,8 @@
-0,Emily,Manuel,2023-06-11,M,peruano
+0,Emily,Benitez,2023-06-11,M,Peru
 1,Manuel,Jaramillo,2001-11-06,M,Mexico
-2,Jose,Rodriguez,2021-06-11,F,ecuatoriano
+2,Jose,Rodriguez,2021-06-11,F,Ecuador
+3,Steven,Lopez,2023-06-19,M,Peru
+4,Manuel,Lopez,2023-06-19,M,Peru
+5,Emilio,Montalvo,2001-06-19,M,Ecuador
+6,Emilio,Montalvo,2001-06-19,M,Ecuador
+7,Rodrigo,Borga,2001-02-02,M,Ecuador
