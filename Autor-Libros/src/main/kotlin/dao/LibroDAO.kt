@@ -23,7 +23,7 @@ class LibroDAO:DAO<Libro>(){
     }
 
     override fun get(id: String): Libro? {
-        val autorString= AutorDAO.archivo.getRegistro(id);
+        val autorString= archivo.getRegistro(id);
         return if (autorString==null){
             null
         }else{
@@ -32,7 +32,7 @@ class LibroDAO:DAO<Libro>(){
     }
 
     override fun getLista(): List<Libro>? {
-        val registros= AutorDAO.archivo.leerRegistros()
+        val registros= archivo.leerRegistros()
         if(registros!=null){
             for(registro in registros ){
                 listaLibros.add(Libro(registro))

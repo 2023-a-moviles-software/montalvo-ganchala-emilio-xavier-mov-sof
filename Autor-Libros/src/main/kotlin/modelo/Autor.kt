@@ -42,6 +42,58 @@ class Autor{
         return this.id
     }
 
+    fun getNombre():String{
+        return this.nombre
+    }
+
+    fun getApellido():String{
+        return this.apellido
+    }
+
+    fun getfechaNacimiento():LocalDate?{
+        return this.fechaNacimiento
+    }
+
+    fun getGenero():Char{
+        return this.genero
+    }
+
+    fun getNacionalidad(): String{
+        return this.nacionalidad
+    }
+
+
+    fun setId(id: Int) {
+        this.id = id
+    }
+
+
+    fun setNombre(nombre: String) {
+        this.nombre = nombre
+    }
+
+
+    fun setApellido(apellido: String) {
+        this.apellido = apellido
+    }
+
+    fun getFechaNacimiento(): LocalDate? = fechaNacimiento
+    fun setFechaNacimiento(fechaNacimiento: LocalDate) {
+        this.fechaNacimiento = fechaNacimiento
+    }
+
+
+    fun setGenero(genero: Char) {
+        this.genero = genero
+    }
+
+
+    fun setNacionalidad(nacionalidad: String) {
+        this.nacionalidad = nacionalidad
+    }
+
+
+
     override fun toString(): String {
         return "$nombre,$apellido,$fechaNacimiento,$genero,$nacionalidad"
     }

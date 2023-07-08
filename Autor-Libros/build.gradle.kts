@@ -13,7 +13,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    //https://mvnrepository.com/artifact/com.toedter/jcalendar
+    implementation("com.toedter:jcalendar:1.4")
+    testImplementation(kotlin("test"));
 }
 
 tasks.test {

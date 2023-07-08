@@ -13,7 +13,7 @@ class AutorDAO():DAO<Autor>(){
         archivo.escribirRegistro(autor.toString());
     }
     override fun delete(id: String): Unit {
-        LibroDAO.archivo.eliminarRegistro(id);
+       archivo.eliminarRegistro(id);
     }
 
     override fun edit(autor: Autor){
@@ -39,6 +39,8 @@ class AutorDAO():DAO<Autor>(){
         }
         return listaAutores
     }
+
+
 
 
 
