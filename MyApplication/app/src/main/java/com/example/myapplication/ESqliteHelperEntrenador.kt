@@ -7,7 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class ESqliteHelperEntrenador(contexto: Context?): SQLiteOpenHelper(contexto,"moviles",null,1) {
     override fun onCreate(db: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+        val scriptCrearTablaEntrenador=
+            """
+                CREATE TABLE ENTRENADOR(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
+                    nombre VARCHAR(50)
+                    descripcion VARCHAR(50)
+                )
+            """.trimIndent()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
