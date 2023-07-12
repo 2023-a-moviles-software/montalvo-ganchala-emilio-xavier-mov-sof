@@ -1,5 +1,6 @@
 package com.example.examenb1
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,72 +12,44 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
-    val arreglo=BDDMemoria.arregloAutor
+    lateinit var adaptador: ArrayAdapter<Autor>
     var idItemSeleccionado = 0
+
+    val autorDAO= AutorDAO()
+    val callback=  registerForActivityResult(
+    ActivityResultContracts.StartActivityForResult()
+    ){
+        result ->
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Boton
-        val botonCrear=findViewById<Button>(
-            R.id.btn_crear_autor
-        )
-        botonCrear.setOnClickListener{ irActividad(FormularioAutor::class.java)}
 
-        //List view
-        // adaptador
+
         val listView = findViewById<ListView>(R.id.lv_autores)
-        val adaptador = ArrayAdapter(
-            this, // Contexto
-            android.R.layout.simple_list_item_1, // layout.xml que se va usar
-            arreglo
+        adaptador = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            autorDAO.getLista()
         )
         listView.adapter = adaptador
         adaptador.notifyDataSetChanged()
 
-        registerForContextMenu(listView)
-    }
+        val botonCrear = findViewById<Button>(R.id.btn_crear_autor)
+        botonCrear.setOnClickListener {
 
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.mi_editar ->{
-                "Hacer algo con: ${idItemSeleccionado}"
-                return true
-            }
-            R.id.mi_eliminar ->{
-                abrirDialogo()
-                "Hacer algo con: ${idItemSeleccionado}"
-                return true
-            }
-
-            R.id.mi_ver_libros ->{
-                irActividad(LibrosActivity::class.java)
-                return true
-            }
-            else -> super.onContextItemSelected(item)
+            irActividad(FormularioAutor::class.java)
         }
-    }
 
-    fun abrirDialogo(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Desea eliminar?")
-        builder.setPositiveButton(
-            "Aceptar",
-            DialogInterface.OnClickListener{ // Callback
-                    dialog, which -> // ALGUNA COSA
-            }
-        )
-        builder.setNegativeButton("Cancelar", null)
-
-
-
-        val dialogo = builder.create()
-        dialogo.show()
-
+        registerForContextMenu(listView)
     }
 
     override fun onCreateContextMenu(
@@ -85,38 +58,79 @@ class MainActivity : AppCompatActivity() {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
-        // llenar las opciones del menu
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
-        // obtener el id del ArrayList seleccionado
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
         idItemSeleccionado = id
     }
 
+    fun abrirDialogoEliminar() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Esta seguro que desea eliminar el autor?")
+        builder.setPositiveButton("Si") { dialog, which ->
+            if(autorDAO.delete(autorDAO.getLista().get(idItemSeleccionado).getId())){
+                adaptador.notifyDataSetChanged()
+            }
+        }
+        builder.setNegativeButton("No", null)
 
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.mi_editar -> {
+                abrirActividadConParametros(FormularioAutor::class.java)
+                true
+            }
+
+            R.id.mi_eliminar -> {
+                abrirDialogoEliminar()
+                true
+            }
+
+            R.id.mi_ver_libros -> {
+                abrirActividadConParametros(LibrosActivity::class.java)
+                true
+            }
+
+            else -> {
+                super.onContextItemSelected(item)
+            }
+        }
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        adaptador.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adaptador.notifyDataSetChanged()
+    }
 
     fun irActividad(
         clase: Class<*>
     ){
         val intent = Intent(this, clase)
-        // NO RECIBIMOS RESPUESTA
         startActivity(intent)
-        // this.startActivity()
     }
-/*
+
     fun abrirActividadConParametros(
         clase: Class<*>
     ){
         val intentExplicito = Intent(this, clase)
         // Enviar parametros
         // (aceptamos primitivas)
-        intentExplicito.putExtra("nombre", "Adrian")
-        intentExplicito.putExtra("apellido", "Eguez")
-        intentExplicito.putExtra("edad", 30)
+        intentExplicito.putExtra("id", autorDAO.getLista().get(idItemSeleccionado).getId())
         // enviamos el intent con RESPUESTA
         // RECIBIMOS RESPUESTA
-        callbackContenidoIntentExplicito
-            .launch(intentExplicito)
-    }*/
+        callback.launch(intentExplicito)
+    }
 }
+
+

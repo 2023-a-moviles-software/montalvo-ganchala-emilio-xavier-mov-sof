@@ -8,8 +8,8 @@ class AutorDAO():DAO<Autor>(){
         autor.setId(idUltimo+1);
        BDDMemoria.arregloAutor.add(autor)
     }
-    override fun delete(id: Int): Unit {
-        BDDMemoria.arregloAutor.removeIf { it.getId()==id }
+    override fun delete(id: Int): Boolean {
+        return BDDMemoria.arregloAutor.removeIf { it.getId()==id }
     }
 
     override fun edit(autor: Autor){

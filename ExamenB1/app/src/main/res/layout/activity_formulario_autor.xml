@@ -7,28 +7,16 @@
     tools:context=".FormularioAutor">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_top_autor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.074" />
 
     <EditText
         android:id="@+id/et_nombre"
@@ -41,7 +29,19 @@
         app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
+        app:layout_constraintVertical_bias="0.152" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175" />
 
     <TextView
         android:id="@+id/tv_apellido"
@@ -58,7 +58,7 @@
     <EditText
         android:id="@+id/et_apellido"
         android:layout_width="212dp"
-        android:layout_height="63dp"
+        android:layout_height="67dp"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -76,22 +76,22 @@
         android:text="Fecha de Nacimiento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_apellido"
-        app:layout_constraintVertical_bias="0.141" />
+        app:layout_constraintVertical_bias="0.156" />
 
     <EditText
         android:id="@+id/et_fecha_nacimiento"
-        android:layout_width="211dp"
-        android:layout_height="61dp"
+        android:layout_width="212dp"
+        android:layout_height="67dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/et_apellido"
         app:layout_constraintVertical_bias="0.0" />
@@ -110,9 +110,9 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/et_género"
-        android:layout_width="211dp"
-        android:layout_height="57dp"
+        android:id="@+id/et_genero"
+        android:layout_width="212dp"
+        android:layout_height="67dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
@@ -134,12 +134,12 @@
         app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.297" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <EditText
         android:id="@+id/et_nacionalidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="212dp"
+        android:layout_height="67dp"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -147,7 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/et_género"
+        app:layout_constraintTop_toBottomOf="@+id/et_genero"
         app:layout_constraintVertical_bias="0.028" />
 
     <Button
@@ -157,7 +157,22 @@
         android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nacionalidad" />
+        app:layout_constraintTop_toBottomOf="@+id/et_nacionalidad"
+        app:layout_constraintVertical_bias="0.594" />
+
+    <Button
+        android:id="@+id/btn_cancelar_autor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_aceptar_autor"
+        app:layout_constraintHorizontal_bias="0.601"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.876" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

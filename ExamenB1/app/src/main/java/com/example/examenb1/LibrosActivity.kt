@@ -3,25 +3,130 @@ package com.example.examenb1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ListView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 
 class LibrosActivity : AppCompatActivity() {
+    lateinit var adaptador: ArrayAdapter<Libro>
+    var idItemSeleccionado = 0
+
+    val libroDAO= LibroDAO()
+    val callback=  registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+            result ->
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_libros)
-        //Boton
-        val botonCrear=findViewById<Button>(
-            R.id.btn_crear_libro
+
+
+
+        val listView = findViewById<ListView>(R.id.lv_libros)
+        adaptador = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            libroDAO.getLista()
         )
-        botonCrear.setOnClickListener{ irActividad(FormularioLibro::class.java)}
+        listView.adapter = adaptador
+        adaptador.notifyDataSetChanged()
+
+        val botonCrear = findViewById<Button>(R.id.btn_crear_libro)
+        botonCrear.setOnClickListener {
+
+            irActividad(FormularioLibro::class.java)
+        }
+
+        registerForContextMenu(listView)
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        val info = menuInfo as AdapterView.AdapterContextMenuInfo
+        val id = info.position
+        idItemSeleccionado = id
+    }
+
+    fun abrirDialogoEliminar() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Esta seguro que desea eliminar el autor?")
+        builder.setPositiveButton("Si") { dialog, which ->
+            if(libroDAO.delete(libroDAO.getLista().get(idItemSeleccionado).getId())){
+                adaptador.notifyDataSetChanged()
+            }
+        }
+        builder.setNegativeButton("No", null)
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.mi_editar -> {
+                abrirActividadConParametros(FormularioAutor::class.java)
+                true
+            }
+
+            R.id.mi_eliminar -> {
+                abrirDialogoEliminar()
+                true
+            }
+
+            R.id.mi_ver_libros -> {
+                abrirActividadConParametros(LibrosActivity::class.java)
+                true
+            }
+
+            else -> {
+                super.onContextItemSelected(item)
+            }
+        }
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        adaptador.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adaptador.notifyDataSetChanged()
     }
 
     fun irActividad(
         clase: Class<*>
     ){
         val intent = Intent(this, clase)
-        // NO RECIBIMOS RESPUESTA
         startActivity(intent)
-        // this.startActivity()
+    }
+
+    fun abrirActividadConParametros(
+        clase: Class<*>
+    ){
+        val intentExplicito = Intent(this, clase)
+        // Enviar parametros
+        // (aceptamos primitivas)
+        intentExplicito.putExtra("id", libroDAO.getLista().get(idItemSeleccionado).getId())
+        // enviamos el intent con RESPUESTA
+        // RECIBIMOS RESPUESTA
+        callback.launch(intentExplicito)
     }
 }

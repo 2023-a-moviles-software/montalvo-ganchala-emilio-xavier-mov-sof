@@ -8,8 +8,8 @@ class LibroDAO():DAO<Libro>(){
         libro.setId(idUltimo+1);
         BDDMemoria.arregloLibro.add(libro)
     }
-    override fun delete(id: Int): Unit {
-        BDDMemoria.arregloLibro.removeIf { it.getId()==id }
+    override fun delete(id: Int): Boolean {
+        return BDDMemoria.arregloLibro.removeIf { it.getId()==id }
     }
 
     override fun edit(libro: Libro){
