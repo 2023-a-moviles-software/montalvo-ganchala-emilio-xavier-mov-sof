@@ -82,11 +82,11 @@ class FormularioAutor : AppCompatActivity() {
             }
         }else{
 
-
+            textoTop.text = "Crear Autor"
             botonAceptar.setOnClickListener {
 
                 try {
-                    textoTop.text = "Crear Autor"
+
                     val nombre = campoNombre.text.toString()
                     val apellido = campoApellido.text.toString()
                     val nacimiento = fechaNacimiento.text.toString()

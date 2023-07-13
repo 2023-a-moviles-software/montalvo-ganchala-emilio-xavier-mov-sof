@@ -27,7 +27,7 @@ class LibroDAO():DAO<Libro>(){
         return BDDMemoria.arregloLibro
     }
 
-    fun getListaPorAutor(autorId:Int):List<Libro>{
+    fun getLista(autorId:Int):List<Libro>{
         return BDDMemoria.arregloLibro.filter { it.getIdAutor()==autorId}
     }
 }

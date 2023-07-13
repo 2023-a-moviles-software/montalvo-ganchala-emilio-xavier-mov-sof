@@ -26,4 +26,8 @@ class AutorDAO():DAO<Autor>(){
 
         return BDDMemoria.arregloAutor
     }
+
+    fun existe(id: Int):Boolean{
+        return BDDMemoria.arregloAutor.any { it.getId()==id }
+    }
 }

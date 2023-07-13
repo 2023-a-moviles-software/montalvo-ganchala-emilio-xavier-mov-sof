@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
         val listView = findViewById<ListView>(R.id.lv_autores)
         adaptador = ArrayAdapter(
             this,
@@ -124,11 +121,7 @@ class MainActivity : AppCompatActivity() {
         clase: Class<*>
     ){
         val intentExplicito = Intent(this, clase)
-        // Enviar parametros
-        // (aceptamos primitivas)
         intentExplicito.putExtra("id", autorDAO.getLista().get(idItemSeleccionado).getId())
-        // enviamos el intent con RESPUESTA
-        // RECIBIMOS RESPUESTA
         callback.launch(intentExplicito)
     }
 }
