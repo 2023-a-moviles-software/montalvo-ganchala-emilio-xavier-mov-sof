@@ -29,7 +29,7 @@ class LibrosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_libros)
         id = intent.getIntExtra("id", -1)
-        abrirDialogo(id.toString())
+
 
         if (id != -1) {
             val listView = findViewById<ListView>(R.id.lv_libros)

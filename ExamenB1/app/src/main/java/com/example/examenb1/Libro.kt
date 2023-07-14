@@ -1,6 +1,7 @@
 package com.example.examenb1
 
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class Libro {
     private var id: Int=0
@@ -86,6 +87,8 @@ class Libro {
 
 
     override fun toString(): String {
-        return "$titulo,$editorial,$fechaPublicacion,$disponible,$precio,$idAutor"
+        return "id:$id\nTítulo$titulo\nEditorial:$editorial\nPublicación:${
+            fechaPublicacion!!.format(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy"))}\nDispobible:${if(disponible) "si" else "no"}\nPrecio:$precio\n"
     }
 }

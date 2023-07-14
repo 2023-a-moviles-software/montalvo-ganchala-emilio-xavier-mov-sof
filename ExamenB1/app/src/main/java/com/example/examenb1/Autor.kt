@@ -1,6 +1,7 @@
 package com.example.examenb1
 
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class Autor{
     private var id: Int = 0
@@ -76,6 +77,8 @@ class Autor{
 
 
     override fun toString(): String {
-        return "$nombre,$apellido,$fechaNacimiento,$genero,$nacionalidad"
+        return "Id:$id\nNombre:$nombre $apellido\nNacimiento:${
+            fechaNacimiento!!.format(
+            DateTimeFormatter.ofPattern("dd/MM/yyyy"))}\nGénero:$genero\nNacionalidad:$nacionalidad\n"
     }
 }

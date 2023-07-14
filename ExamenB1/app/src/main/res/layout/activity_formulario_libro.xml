@@ -23,13 +23,12 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.674"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_titulo"
         app:layout_constraintVertical_bias="0.008" />
 
@@ -41,8 +40,8 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.413"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.674"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cb_disponiblidad"
         app:layout_constraintVertical_bias="0.123" />
 
@@ -60,23 +59,23 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="77dp"
-        android:layout_height="55dp"
+        android:layout_width="78dp"
+        android:layout_height="43dp"
         android:layout_marginTop="44dp"
         android:text="Fecha de Publicación"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintVertical_bias="0.034" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="Autor:"
+        android:text="Autor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.225"
@@ -88,54 +87,50 @@
         android:id="@+id/textView5"
         android:layout_width="42dp"
         android:layout_height="19dp"
-        android:layout_marginEnd="52dp"
         android:text="Precio:"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cb_disponiblidad"
-        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintVertical_bias="0.206" />
 
     <EditText
         android:id="@+id/et_fecha_publicacion"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
         android:layout_marginBottom="360dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.674"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_editorial"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintVertical_bias="0.463" />
 
     <EditText
         android:id="@+id/et_titulo"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="56dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.176" />
 
     <CheckBox
         android:id="@+id/cb_disponiblidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginBottom="284dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_fecha_publicacion"
         app:layout_constraintVertical_bias="0.492" />
 
@@ -185,16 +180,15 @@
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_aceptar_libro"
-        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.817" />
 
     <EditText
         android:id="@+id/at_autor"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="140dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -202,6 +196,6 @@
         app:layout_constraintHorizontal_bias="0.674"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_precio"
-        app:layout_constraintVertical_bias="0.681" />
+        app:layout_constraintVertical_bias="0.184" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

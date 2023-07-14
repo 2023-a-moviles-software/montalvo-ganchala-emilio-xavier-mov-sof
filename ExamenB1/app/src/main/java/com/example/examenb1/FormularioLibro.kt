@@ -29,7 +29,7 @@ class FormularioLibro : AppCompatActivity() {
         setContentView(R.layout.activity_formulario_libro)
         id=intent.getIntExtra("id", -1)
         idAutor=intent.getIntExtra("idAutor", -1)
-        abrirDialogo(id.toString())
+
 
         val botonAceptar = findViewById<Button>(R.id.btn_aceptar_libro)
         val botonCancelar = findViewById<Button>(R.id.btn_cancelar_libro)
