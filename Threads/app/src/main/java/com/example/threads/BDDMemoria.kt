@@ -8,6 +8,7 @@ class BDDMemoria {
         init {
             arregloUsuario.add(Usuario(R.drawable.perfil_1,"manuel","manuel123"))
             arregloPublicaciones.add(Publicacion(arregloUsuario[0],"Hola a todos",R.drawable.publicacion_1,5,5,5))
+            arregloPublicaciones.add(Publicacion(arregloUsuario[0],"Adios a todos",R.drawable.publicacion_1,12,1,4))
         }
     }
 }
