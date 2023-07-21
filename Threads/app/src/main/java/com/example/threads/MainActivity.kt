@@ -1,7 +1,10 @@
 package com.example.threads
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +21,10 @@ class MainActivity : AppCompatActivity() {
             arreglo,
             recyclerView
         )
+
+        /*val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(ColorDrawable(Color.TRANSPARENT)) // Esto establecerá el color de fondo transparente
+        recyclerView.addItemDecoration(itemDecoration)*/
 
         recyclerView.adapter=adaptador
         recyclerView.itemAnimator=androidx.recyclerview.widget

@@ -1,164 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/fondo">
 
-    <ImageView
-        android:id="@+id/imv_publicacion"
-        android:layout_width="308dp"
-        android:layout_height="221dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_texto_publicacion"
-        app:layout_constraintVertical_bias="0.011"
-        app:srcCompat="@drawable/publicacion_1" />
-
-    <TextView
-        android:id="@+id/tv_horas"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/group_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5 h"
-        android:textColor="@color/secundario"
-        app:layout_constraintBottom_toTopOf="@+id/imv_publicacion"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toEndOf="@+id/tv_nombre_usuario"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+       >
 
-    <ImageView
-        android:id="@+id/imv_respuestas"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.232"
-        app:srcCompat="@drawable/perfil_1" />
 
-    <TextView
-        android:id="@+id/tv_punto"
-        android:layout_width="11dp"
-        android:layout_height="19dp"
-        android:text=" ·"
-        android:textColor="@color/secundario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_respuestas"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.146" />
+        <View
+            android:id="@+id/rectangle_1"
+            android:layout_width="360dp"
+            android:layout_height="447dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/rectangle_1_shape" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="276dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_texto_publicacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toEndOf="@+id/imv_usuario"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.807"
-        app:srcCompat="@drawable/more" />
+        <ImageView
+            android:id="@+id/line_1"
+            android:layout_width="327dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="-136dp"
+            android:layout_marginTop="242dp"
+            android:contentDescription="line_1"
+            android:src="@drawable/line_1" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="2dp"
-        android:layout_height="280dp"
-        android:background="@color/secundario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        <ImageView
+            android:id="@+id/mask_group"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="29dp"
+            android:contentDescription="mask_group"
+            android:src="@drawable/mask_group" />
 
-    <ImageView
-        android:id="@+id/imv_usuario"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125"
-        app:srcCompat="@drawable/perfil_1" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="146dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imv_publicacion"
-        app:layout_constraintVertical_bias="0.064"
-        app:srcCompat="@drawable/iconos" />
+        <RelativeLayout
+            android:id="@+id/component_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="52dp">
 
-    <TextView
-        android:id="@+id/tv_texto_publicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="248dp"
-        android:text="TextView"
-        android:textColor="@color/texto"
-        app:layout_constraintBottom_toBottomOf="@+id/imv_usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toEndOf="@+id/imv_usuario"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nombre_usuario"
-        app:layout_constraintVertical_bias="0.125" />
+            <View
+                android:id="@+id/ellipse_2"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/ellipse_2_shape" />
 
-    <TextView
-        android:id="@+id/tv_megusta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5 Me gusta"
-        android:textColor="@color/secundario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_punto"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.146" />
+            <ImageView
+                android:id="@+id/image_1"
+                android:layout_width="8dp"
+                android:layout_height="7.4dp"
+                android:layout_marginStart="3.5dp"
+                android:layout_marginTop="4.5dp"
+                android:contentDescription="image_1"
+                android:src="@drawable/image_1" />
 
-    <TextView
-        android:id="@+id/tv_nombre_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="nombre"
-        android:textColor="@color/texto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imv_usuario"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_respuestas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="272dp"
-        android:text="4 respuestas"
-        android:textColor="@color/secundario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toEndOf="@+id/imv_respuestas"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.06" />
+        <TextView
+            android:id="@+id/tv_nombre_usuario"
+            android:layout_width="125dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="29dp"
+            android:fontFamily="Inter"
+            android:text="nombreUsuario"
+            android:textColor="@color/texto"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_texto_publicacion"
+            android:layout_width="136dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="52dp"
+            android:fontFamily="Inter"
+            android:text="Texto"
+            android:textColor="@color/texto"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_respuestas"
+            android:layout_width="105dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="415dp"
+            android:fontFamily="Inter"
+            android:text="4 respuestas"
+            android:textColor="@color/secundario"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_megusta"
+            android:layout_width="111dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="157dp"
+            android:layout_marginTop="415dp"
+            android:fontFamily="Inter"
+            android:text="545 me gusta"
+            android:textColor="@color/secundario"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_punto"
+            android:layout_width="23dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="153dp"
+            android:layout_marginTop="415dp"
+            android:fontFamily="Inter"
+            android:text="·"
+            android:textColor="@color/secundario"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_horas"
+            android:layout_width="41dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="285dp"
+            android:layout_marginTop="29dp"
+            android:fontFamily="Inter"
+            android:text="5 h"
+            android:textColor="@color/secundario"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/mas"
+            android:layout_width="20dp"
+            android:layout_height="12.35dp"
+            android:layout_marginStart="322dp"
+            android:layout_marginTop="31dp"
+            android:contentDescription="mas"
+            android:src="@drawable/mas" />
+
+        <ImageView
+            android:id="@+id/mask_group_ek1"
+            android:layout_width="278dp"
+            android:layout_height="280dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="75dp"
+            android:contentDescription="mask_group_ek1"
+            android:src="@drawable/mask_group_ek1" />
+
+        <ImageView
+            android:id="@+id/image_2"
+            android:layout_width="150dp"
+            android:layout_height="33.94dp"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="372dp"
+            android:contentDescription="image_2"
+            android:src="@drawable/image_2" />
+
+        <ImageView
+            android:id="@+id/mask_group_ek2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="416dp"
+            android:contentDescription="mask_group_ek2"
+            android:src="@drawable/mask_group_ek2" />
+
+    </RelativeLayout>
+
+
