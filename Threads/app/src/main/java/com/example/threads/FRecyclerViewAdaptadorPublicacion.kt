@@ -17,16 +17,18 @@ class FRecyclerViewAdaptadorPublicacion(
     private val TIPO_NORMAL = 1
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Variables de vistas para los elementos normales
+
         val usuarioTextView: TextView = view.findViewById(R.id.tv_nombre_usuario)
         val publicacionTextView: TextView = view.findViewById(R.id.tv_texto_publicacion)
         val respuestasTextView: TextView = view.findViewById(R.id.tv_respuestas)
         val megustaTextView: TextView = view.findViewById(R.id.tv_megusta)
         val horasTextView: TextView = view.findViewById(R.id.tv_horas)
+        val perfilImageView:ImageView=view.findViewById(R.id.imv_perfil_foto_publicacion)
+        val publicacionImageView:ImageView=view.findViewById(R.id.imv_publicacion)
     }
 
     inner class EncabezadoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Variables de vistas para el encabezado
+
 
     }
 
@@ -64,7 +66,11 @@ class FRecyclerViewAdaptadorPublicacion(
             myViewHolder.usuarioTextView.text = publicacionActual.usuario.usuario
             myViewHolder.megustaTextView.text = "${publicacionActual.likes} me gusta"
             myViewHolder.respuestasTextView.text = "${publicacionActual.respuestas} respuestas"
-            myViewHolder.horasTextView.text = "5 h"
+            myViewHolder.horasTextView.text = "${publicacionActual.horas} h"
+            myViewHolder.perfilImageView.setImageResource(publicacionActual.usuario.imagen)
+            myViewHolder.publicacionImageView.setImageResource(publicacionActual.imagen)
+
+
         }
     }
 

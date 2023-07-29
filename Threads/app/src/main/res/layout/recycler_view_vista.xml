@@ -19,7 +19,7 @@
             android:src="@drawable/line_1" />
 
         <ImageView
-            android:id="@+id/mask_group"
+            android:id="@+id/imv_perfil_foto_publicacion"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="9dp"
@@ -48,7 +48,7 @@
                 android:layout_height="7.4dp"
                 android:layout_marginStart="3.5dp"
                 android:layout_marginTop="4.5dp"
-                android:src="@drawable/image_1" />
+                android:src="@drawable/mas_sobre_perfil" />
 
         </RelativeLayout>
 
@@ -128,7 +128,7 @@
             android:src="@drawable/mas" />
 
         <ImageView
-            android:id="@+id/mask_group_ek1"
+            android:id="@+id/imv_publicacion"
             android:layout_width="278dp"
             android:layout_height="280dp"
             android:layout_marginStart="64dp"
@@ -141,7 +141,7 @@
             android:layout_height="33.94dp"
             android:layout_marginStart="58dp"
             android:layout_marginTop="372dp"
-            android:src="@drawable/image_2" />
+            android:src="@drawable/opciones_publicacion" />
 
         <ImageView
             android:id="@+id/mask_group_ek2"

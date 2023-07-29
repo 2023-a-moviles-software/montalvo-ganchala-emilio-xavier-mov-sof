@@ -13,7 +13,7 @@ class BDDMemoria {
                 R.drawable.perfil_3, R.drawable.perfil_4, R.drawable.perfil_5, R.drawable.perfil_6)
 
             val random = Random(System.currentTimeMillis())
-            val indiceAleatorio = random.nextInt(imagen.size)
+
 
             arregloUsuario.add(Usuario(imagen[random.nextInt(imagen.size)],"manuel","manuel123",53))
             arregloUsuario.add(Usuario(imagen[random.nextInt(imagen.size)],"jose","jose123",55))
@@ -52,10 +52,10 @@ class BDDMemoria {
 
             //Publicaciones
             arregloPublicaciones.add(Publicacion(arregloUsuario[0],"Buenos Días",R.drawable.publicacion_0,2,10,2))
-            arregloPublicaciones.add(Publicacion(arregloUsuario[0],"Hola a todos",R.drawable.publicacion_0,5,5,5))
-            arregloPublicaciones.add(Publicacion(arregloUsuario[1],"Adios a todos",R.drawable.publicacion_0,12,1,4))
-            arregloPublicaciones.add(Publicacion(arregloUsuario[1],"Jajajajaja",R.drawable.publicacion_0,12,1,4))
-            arregloPublicaciones.add(Publicacion(arregloUsuario[1],"Header",R.drawable.publicacion_0,12,1,4))
+            arregloPublicaciones.add(Publicacion(arregloUsuario[1],"Los amo",R.drawable.publicacion_1,5,5,5))
+            arregloPublicaciones.add(Publicacion(arregloUsuario[2],"Buen dia",R.drawable.publicacion_0,12,1,4))
+            arregloPublicaciones.add(Publicacion(arregloUsuario[3],"Sospechoso",R.drawable.publicacion_2,12,1,4))
+            arregloPublicaciones.add(Publicacion(arregloUsuario[4],"Header",R.drawable.publicacion_0,12,1,4))
         }
     }
 }
