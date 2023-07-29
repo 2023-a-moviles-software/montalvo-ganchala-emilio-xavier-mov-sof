@@ -6,14 +6,8 @@
         android:id="@+id/usuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/fondo"
         >
-
-        <View   android:id="@+id/rectangle_5"
-            android:background="@drawable/rectanglulo_fondo_1"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_width="362dp"
-            android:layout_height="86dp" />
 
         <ImageView android:id="@+id/line_2"
             android:src="@drawable/line_2"
@@ -21,7 +15,7 @@
             android:layout_marginStart="83dp"
             android:layout_marginTop="84dp"
             android:layout_width="279dp"
-            android:layout_height="0dp" />
+            android:layout_height="wrap_content" />
 
         <TextView android:id="@+id/tv_seguidores"
             android:fontFamily="Inter"
@@ -58,15 +52,14 @@
             />
 
         <ImageView android:id="@+id/imv_perfil_foto"
-            android:src="@drawable/imv_perfil_foto"
-            android:contentDescription="imv_perfil_foto"
+            android:src="@drawable/perfil_0"
             android:layout_marginStart="33dp"
             android:layout_marginTop="8dp"
             android:layout_width="35dp"
             android:layout_height="35dp" />
 
         <ImageView android:id="@+id/imv_seguidor"
-            android:src="@drawable/imv_seguidor"
+            android:src="@drawable/seguidor_0"
             android:contentDescription="imv_seguidor"
             android:layout_marginStart="83dp"
             android:layout_marginTop="56dp"
@@ -82,7 +75,7 @@
             >
 
             <ImageView android:id="@+id/rectangle_6"
-                android:src="@drawable/rectangle_6"
+                android:src="@drawable/boton_seguir"
                 android:contentDescription="rectangle_6"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"

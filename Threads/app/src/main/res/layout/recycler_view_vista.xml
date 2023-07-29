@@ -6,24 +6,16 @@
         android:id="@+id/group_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/fondo"
        >
 
 
-        <View
-            android:id="@+id/rectangle_1"
-            android:layout_width="360dp"
-            android:layout_height="447dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/rectangulo_fondo_2" />
-
-        <ImageView
+       <ImageView
             android:id="@+id/line_1"
             android:layout_width="327dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="-136dp"
-            android:layout_marginTop="242dp"
-            android:contentDescription="line_1"
+            android:layout_marginTop="75dp"
             android:src="@drawable/line_1" />
 
         <ImageView
@@ -32,8 +24,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="9dp"
             android:layout_marginTop="29dp"
-            android:contentDescription="mask_group"
-            android:src="@drawable/imv_perfil_foto" />
+            android:src="@drawable/perfil_0" />
 
 
         <RelativeLayout
@@ -49,7 +40,7 @@
                 android:layout_height="17dp"
                 android:layout_marginStart="-1dp"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/ellipse_2_shape" />
+                android:background="@drawable/circulo_mas" />
 
             <ImageView
                 android:id="@+id/image_1"
@@ -57,7 +48,6 @@
                 android:layout_height="7.4dp"
                 android:layout_marginStart="3.5dp"
                 android:layout_marginTop="4.5dp"
-                android:contentDescription="image_1"
                 android:src="@drawable/image_1" />
 
         </RelativeLayout>
@@ -135,7 +125,6 @@
             android:layout_height="12.35dp"
             android:layout_marginStart="322dp"
             android:layout_marginTop="31dp"
-            android:contentDescription="mas"
             android:src="@drawable/mas" />
 
         <ImageView
@@ -144,8 +133,7 @@
             android:layout_height="280dp"
             android:layout_marginStart="64dp"
             android:layout_marginTop="75dp"
-            android:contentDescription="mask_group_ek1"
-            android:src="@drawable/mask_group_ek1" />
+            android:src="@drawable/publicacion_0" />
 
         <ImageView
             android:id="@+id/image_2"
@@ -153,7 +141,6 @@
             android:layout_height="33.94dp"
             android:layout_marginStart="58dp"
             android:layout_marginTop="372dp"
-            android:contentDescription="image_2"
             android:src="@drawable/image_2" />
 
         <ImageView
@@ -162,8 +149,7 @@
             android:layout_height="16dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="416dp"
-            android:contentDescription="mask_group_ek2"
-            android:src="@drawable/imv_seguidor" />
+            android:src="@drawable/seguidor_0" />
 
     </RelativeLayout>
 
