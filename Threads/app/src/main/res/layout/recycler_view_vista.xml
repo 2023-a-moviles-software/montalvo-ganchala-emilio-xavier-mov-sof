@@ -15,7 +15,7 @@
             android:layout_height="447dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/rectangle_1_shape" />
+            android:background="@drawable/rectangulo_fondo_2" />
 
         <ImageView
             android:id="@+id/line_1"
@@ -33,7 +33,7 @@
             android:layout_marginStart="9dp"
             android:layout_marginTop="29dp"
             android:contentDescription="mask_group"
-            android:src="@drawable/mask_group" />
+            android:src="@drawable/imv_perfil_foto" />
 
 
         <RelativeLayout
@@ -163,7 +163,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="416dp"
             android:contentDescription="mask_group_ek2"
-            android:src="@drawable/mask_group_ek2" />
+            android:src="@drawable/imv_seguidor" />
 
     </RelativeLayout>
 

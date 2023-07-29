@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     val arreglo=BDDMemoria.arregloPublicaciones
+    val arregloUsuario=BDDMemoria.arregloUsuario
     var posicion=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             recyclerView
         )
 
+        val adaptadorUsuario= FRecyclerViewAdaptadorUsuario(
+            this,
+            arregloUsuario,
+        recyclerView
+        )
+
         recyclerView.adapter=adaptador
         recyclerView.itemAnimator=androidx.recyclerview.widget
             .DefaultItemAnimator()
@@ -41,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                 posicion=1
                 botonSearh.setImageResource(R.drawable.search2)
                 botonHome.setImageResource(R.drawable.home2)
+                recyclerView.adapter=adaptadorUsuario
+                adaptadorUsuario.notifyDataSetChanged()
             }
         }
 
@@ -49,7 +58,8 @@ class MainActivity : AppCompatActivity() {
                 posicion=0
                 botonSearh.setImageResource(R.drawable.search)
                 botonHome.setImageResource(R.drawable.home)
-
+                recyclerView.adapter=adaptador
+                adaptador.notifyDataSetChanged()
             }
         }
 

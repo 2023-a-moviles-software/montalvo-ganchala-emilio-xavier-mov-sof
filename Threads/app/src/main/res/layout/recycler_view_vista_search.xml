@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <View   android:id="@+id/rectangle_5"
+            android:background="@drawable/rectanglulo_fondo_1"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_width="362dp"
+            android:layout_height="86dp" />
+
+        <ImageView android:id="@+id/line_2"
+            android:src="@drawable/line_2"
+            android:contentDescription="line_2"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="84dp"
+            android:layout_width="279dp"
+            android:layout_height="0dp" />
+
+        <TextView android:id="@+id/tv_seguidores"
+            android:fontFamily="Inter"
+            android:textSize="14sp"
+            android:textColor="@color/texto"
+            android:layout_marginLeft="108dp"
+            android:layout_marginTop="55dp"
+            android:layout_width="121dp"
+            android:layout_height="27dp"
+            android:text="5 seguidores"
+            />
+
+        <TextView android:id="@+id/tv_descripcion"
+            android:fontFamily="Inter"
+            android:textSize="14sp"
+            android:textColor="@color/secundario"
+            android:layout_marginLeft="83dp"
+            android:layout_marginTop="29dp"
+            android:layout_width="127dp"
+            android:layout_height="27dp"
+            android:text="descripcion"
+            />
+
+        <TextView android:id="@+id/tv_nombre_usuario_us"
+            android:fontFamily="Inter"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/texto"
+            android:layout_marginLeft="83dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="125dp"
+            android:layout_height="27dp"
+            android:text="nombreUsuario"
+            />
+
+        <ImageView android:id="@+id/imv_perfil_foto"
+            android:src="@drawable/imv_perfil_foto"
+            android:contentDescription="imv_perfil_foto"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+
+        <ImageView android:id="@+id/imv_seguidor"
+            android:src="@drawable/imv_seguidor"
+            android:contentDescription="imv_seguidor"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="56dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp" />
+
+
+        <RelativeLayout android:id="@+id/btn_seguir"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="269dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView android:id="@+id/rectangle_6"
+                android:src="@drawable/rectangle_6"
+                android:contentDescription="rectangle_6"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_width="85dp"
+                android:layout_height="37dp" />
+
+            <TextView android:id="@+id/tv_nombre_usuario"
+                android:fontFamily="Inter"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/texto"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="11dp"
+                android:layout_width="64dp"
+                android:layout_height="27dp"
+                android:text="Seguir"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
