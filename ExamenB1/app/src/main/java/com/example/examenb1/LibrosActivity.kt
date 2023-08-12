@@ -34,7 +34,7 @@ class LibrosActivity : AppCompatActivity() {
         libroDAO= BDD.libroDAO!!
 
         id = intent.getIntExtra("id", -1)
-        val listView = findViewById<ListView>(R.id.lv_libros)
+        listView = findViewById<ListView>(R.id.lv_libros)
 
         if (id != -1) {
 
@@ -71,8 +71,8 @@ class LibrosActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("¿Está seguro de que desea eliminar el libro?")
         builder.setPositiveButton("Sí") { dialog, which ->
-            val autorEliminado = libroDAO.getLista()[idItemSeleccionado]
-            if (libroDAO.delete(autorEliminado.getId())) {
+            val libroEliminado = libroDAO.getLista()[idItemSeleccionado]
+            if (libroDAO.delete(libroEliminado.getId())) {
 
                 adaptador = ArrayAdapter(
                     this,

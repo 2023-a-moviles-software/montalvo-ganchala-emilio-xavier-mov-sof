@@ -29,7 +29,8 @@ class AutorDAO(context: Context?) : DAO<Autor>(context) {
                     fechaPublicacion VARCHAR(50),
                     disponible INTEGER,
                     precio REAL,
-                    idAutor INTEGER
+                    idAutor INTEGER,
+                    FOREIGN KEY(idAutor) REFERENCES AUTOR(id) ON DELETE CASCADE
                 )
             """.trimIndent()
         db?.execSQL(crearTablaLibro)
