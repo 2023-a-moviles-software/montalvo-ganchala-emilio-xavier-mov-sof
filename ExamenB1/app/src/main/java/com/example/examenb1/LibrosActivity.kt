@@ -16,8 +16,10 @@ import androidx.appcompat.app.AlertDialog
 class LibrosActivity : AppCompatActivity() {
     lateinit var adaptador: ArrayAdapter<Libro>
     var idItemSeleccionado = 0
-
+    val arrayAux=arrayListOf<Libro>()
     lateinit var libroDAO : LibroDAO
+
+
     var id: Int? = -1
     val callback = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -37,8 +39,8 @@ class LibrosActivity : AppCompatActivity() {
             val listView = findViewById<ListView>(R.id.lv_libros)
             adaptador = ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1,
-                libroDAO.getLista(id!!)
+                android.R.layout.simple_list_item_1,arrayAux
+                //libroDAO.getLista(id!!)
             )
             listView.adapter = adaptador
 

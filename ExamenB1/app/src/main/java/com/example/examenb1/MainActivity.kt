@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         BDD.autorDAO=AutorDAO(this)
-        BDD.libroDAO=LibroDAO(this)
+        //BDD.libroDAO=LibroDAO(this)
 
         this.autorDAO= BDD.autorDAO!!
 

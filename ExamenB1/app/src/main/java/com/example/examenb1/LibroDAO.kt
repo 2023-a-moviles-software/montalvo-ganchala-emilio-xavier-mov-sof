@@ -24,7 +24,7 @@ class LibroDAO(context: Context?) : DAO<Libro>(context) {
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // Lógica de actualización de base de datos (si es necesario)
+
     }
 
     override fun add(libro: Libro) {
@@ -112,31 +112,30 @@ class LibroDAO(context: Context?) : DAO<Libro>(context) {
             SELECT * FROM LIBRO
         """.trimIndent()
 
-        val resultadoConsultaLectura = baseDatosLectura.rawQuery(
-            scriptConsultaLectura,
-            null
-        )
+        val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultaLectura, null)
 
-        val listaLibros = mutableListOf<Libro>()
+        val arreglo = arrayListOf<Libro>()
 
-        while (resultadoConsultaLectura.moveToNext()) {
-            val id = resultadoConsultaLectura.getInt(0)
-            val titulo = resultadoConsultaLectura.getString(1)
-            val editorial = resultadoConsultaLectura.getString(2)
-            val fechaPublicacionStr = resultadoConsultaLectura.getString(3)
-            val disponible = resultadoConsultaLectura.getInt(4) != 0
-            val precio = resultadoConsultaLectura.getDouble(5)
-            val idAutor = resultadoConsultaLectura.getInt(6)
+        if (resultadoConsultaLectura.moveToFirst()) {
+            do {
+                val id = resultadoConsultaLectura.getInt(0)
+                val titulo = resultadoConsultaLectura.getString(1)
+                val editorial = resultadoConsultaLectura.getString(2)
+                val fechaPublicacion = LocalDate.parse(resultadoConsultaLectura.getString(3))
+                val disponible = resultadoConsultaLectura.getInt(4) != 0
+                val precio = resultadoConsultaLectura.getDouble(5)
+                val idAutor = resultadoConsultaLectura.getInt(6)
 
-            val fechaPublicacion = LocalDate.parse(fechaPublicacionStr)
-            val libro = Libro(id, titulo, editorial, fechaPublicacion, disponible, precio, idAutor)
-            listaLibros.add(libro)
+                val libroEncontrado = Libro(
+                    id, titulo, editorial, fechaPublicacion, disponible, precio, idAutor
+                )
+                arreglo.add(libroEncontrado)
+            } while (resultadoConsultaLectura.moveToNext())
         }
 
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-
-        return listaLibros
+        return arreglo
     }
 
     fun getLista(autorId: Int): List<Libro> {
@@ -147,29 +146,30 @@ class LibroDAO(context: Context?) : DAO<Libro>(context) {
 
         val parametrosConsultaLectura = arrayOf(autorId.toString())
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(
-            scriptConsultaLectura,
-            parametrosConsultaLectura
+            scriptConsultaLectura, parametrosConsultaLectura
         )
 
-        val listaLibros = mutableListOf<Libro>()
+        val arreglo = arrayListOf<Libro>()
 
-        while (resultadoConsultaLectura.moveToNext()) {
-            val id = resultadoConsultaLectura.getInt(0)
-            val titulo = resultadoConsultaLectura.getString(1)
-            val editorial = resultadoConsultaLectura.getString(2)
-            val fechaPublicacionStr = resultadoConsultaLectura.getString(3)
-            val disponible = resultadoConsultaLectura.getInt(4) != 0
-            val precio = resultadoConsultaLectura.getDouble(5)
-            val idAutor = resultadoConsultaLectura.getInt(6)
+        if (resultadoConsultaLectura.moveToFirst()) {
+            do {
+                val id = resultadoConsultaLectura.getInt(0)
+                val titulo = resultadoConsultaLectura.getString(1)
+                val editorial = resultadoConsultaLectura.getString(2)
+                val fechaPublicacion = LocalDate.parse(resultadoConsultaLectura.getString(3))
+                val disponible = resultadoConsultaLectura.getInt(4) != 0
+                val precio = resultadoConsultaLectura.getDouble(5)
+                val idAutor = resultadoConsultaLectura.getInt(6)
 
-            val fechaPublicacion = LocalDate.parse(fechaPublicacionStr)
-            val libro = Libro(id, titulo, editorial, fechaPublicacion, disponible, precio, idAutor)
-            listaLibros.add(libro)
+                val libroEncontrado = Libro(
+                    id, titulo, editorial, fechaPublicacion, disponible, precio, idAutor
+                )
+                arreglo.add(libroEncontrado)
+            } while (resultadoConsultaLectura.moveToNext())
         }
 
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-
-        return listaLibros
+        return arreglo
     }
 }
