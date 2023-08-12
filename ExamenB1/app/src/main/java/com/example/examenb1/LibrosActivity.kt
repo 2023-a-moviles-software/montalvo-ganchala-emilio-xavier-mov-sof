@@ -1,6 +1,5 @@
 package com.example.examenb1
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +17,7 @@ class LibrosActivity : AppCompatActivity() {
     lateinit var adaptador: ArrayAdapter<Libro>
     var idItemSeleccionado = 0
 
-    val libroDAO = LibroDAO()
+    lateinit var libroDAO : LibroDAO
     var id: Int? = -1
     val callback = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -28,6 +27,9 @@ class LibrosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_libros)
+
+        libroDAO= BDD.libroDAO!!
+
         id = intent.getIntExtra("id", -1)
 
 

@@ -1,10 +1,8 @@
 package com.example.examenb1
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -15,8 +13,8 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class FormularioLibro : AppCompatActivity() {
-    private val libroDAO = LibroDAO()
-    private val autorDAO = AutorDAO()
+    val libroDAO:LibroDAO= BDD.libroDAO!!
+    val autorDAO:AutorDAO= BDD.autorDAO!!
     var id: Int? =null
     var idAutor: Int? =null
     val callback = registerForActivityResult(

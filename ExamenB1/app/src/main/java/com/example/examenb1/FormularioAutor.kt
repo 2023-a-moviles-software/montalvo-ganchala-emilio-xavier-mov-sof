@@ -12,7 +12,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class FormularioAutor : AppCompatActivity() {
-    val autorDAO=AutorDAO()
+    val autorDAO:AutorDAO= BDD.autorDAO!!
 
 
 

@@ -1,7 +1,5 @@
 package com.example.examenb1
 
-import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var adaptador: ArrayAdapter<Autor>
     var idItemSeleccionado = 0
 
-    val autorDAO= AutorDAO()
+    lateinit var autorDAO: AutorDAO
     val callback=  registerForActivityResult(
     ActivityResultContracts.StartActivityForResult()
     ){
@@ -31,6 +29,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        BDD.autorDAO=AutorDAO(this)
+        BDD.libroDAO=LibroDAO(this)
+
+        this.autorDAO= BDD.autorDAO!!
+
+
         val listView = findViewById<ListView>(R.id.lv_autores)
         adaptador = ArrayAdapter(
             this,

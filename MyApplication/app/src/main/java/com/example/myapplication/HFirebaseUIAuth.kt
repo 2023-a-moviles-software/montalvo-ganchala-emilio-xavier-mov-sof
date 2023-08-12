@@ -2,14 +2,47 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
+import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.IdpResponse
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.firebase.auth.FirebaseAuth
 
 class HFirebaseUIAuth : AppCompatActivity() {
 
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        setContentView(R.layout.activity_hfirebase_uiauth)
+
+        val btnLogin=findViewById<Button>(R.id.btn_login_firebase)
+        btnLogin.setOnClickListener {
+            val providers = arrayListOf(
+                AuthUI.IdpConfig.EmailBuilder().build()
+            )
+
+            val singInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build()
+            respuestaLoginAuthUi.launch(singInIntent)
+        }
+        val btnLogout=findViewById<Button>(R.id.btn_logout_firebase)
+        btnLogout.setOnClickListener {
+            seDeslogeo()
+        }
+    }
+
+    private fun seDeslogeo() {
+        val btnLogin=findViewById<Button>(R.id.btn_login_firebase)
+        val btnLogut=findViewById<Button>(R.id.btn_logout_firebase)
+        btnLogut.visibility=View.INVISIBLE
+        btnLogin.visibility=View.VISIBLE
+
+        FirebaseAuth.getInstance().signOut()
+    }
 
     //Callback del INTENT de LOGIN
     private val respuestaLoginAuthUi = registerForActivityResult(
@@ -35,8 +68,5 @@ class HFirebaseUIAuth : AppCompatActivity() {
     }
     fun registrarUsuarioPorPrimeraVez(usuario: IdpResponse){ /* usuario.email; usuario.phoneNumber; usuario.user.name;*/  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hfirebase_uiauth)
-    }
+
 }
