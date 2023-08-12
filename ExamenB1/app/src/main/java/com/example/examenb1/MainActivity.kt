@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 class MainActivity : AppCompatActivity() {
     lateinit var adaptador: ArrayAdapter<Autor>
     var idItemSeleccionado = 0
+    lateinit var listView: ListView
 
     lateinit var autorDAO: AutorDAO
     val callback=  registerForActivityResult(
@@ -31,12 +32,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         BDD.autorDAO=AutorDAO(this)
-        //BDD.libroDAO=LibroDAO(this)
+        BDD.libroDAO=LibroDAO(this)
 
         this.autorDAO= BDD.autorDAO!!
 
 
-        val listView = findViewById<ListView>(R.id.lv_autores)
+        listView = findViewById<ListView>(R.id.lv_autores)
         adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
@@ -71,7 +72,15 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Esta seguro que desea eliminar el autor?")
         builder.setPositiveButton("Si") { dialog, which ->
-            if(autorDAO.delete(autorDAO.getLista().get(idItemSeleccionado).getId())){
+            val autorEliminado = autorDAO.getLista()[idItemSeleccionado]
+            if (autorDAO.delete(autorEliminado.getId())) {
+
+                adaptador = ArrayAdapter(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    autorDAO.getLista()
+                )
+                listView.adapter = adaptador
                 adaptador.notifyDataSetChanged()
             }
         }

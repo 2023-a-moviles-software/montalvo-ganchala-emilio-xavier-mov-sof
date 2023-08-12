@@ -20,6 +20,19 @@ class AutorDAO(context: Context?) : DAO<Autor>(context) {
                 )
             """.trimIndent()
         db?.execSQL(scriptSQLCrearTablaAutor)
+        val crearTablaLibro =
+            """
+                CREATE TABLE LIBRO(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    titulo VARCHAR(50),
+                    editorial VARCHAR(50),
+                    fechaPublicacion VARCHAR(50),
+                    disponible INTEGER,
+                    precio REAL,
+                    idAutor INTEGER
+                )
+            """.trimIndent()
+        db?.execSQL(crearTablaLibro)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

@@ -8,19 +8,7 @@ import java.time.LocalDate
 class LibroDAO(context: Context?) : DAO<Libro>(context) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val crearTablaLibro =
-            """
-                CREATE TABLE LIBRO(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    titulo VARCHAR(50),
-                    editorial VARCHAR(50),
-                    fechaPublicacion VARCHAR(50),
-                    disponible INTEGER,
-                    precio REAL,
-                    idAutor INTEGER
-                )
-            """.trimIndent()
-        db?.execSQL(crearTablaLibro)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

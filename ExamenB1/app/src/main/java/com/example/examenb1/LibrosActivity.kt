@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 
 class LibrosActivity : AppCompatActivity() {
     lateinit var adaptador: ArrayAdapter<Libro>
+    lateinit var listView:ListView
     var idItemSeleccionado = 0
     val arrayAux=arrayListOf<Libro>()
     lateinit var libroDAO : LibroDAO
@@ -33,14 +34,14 @@ class LibrosActivity : AppCompatActivity() {
         libroDAO= BDD.libroDAO!!
 
         id = intent.getIntExtra("id", -1)
-
+        val listView = findViewById<ListView>(R.id.lv_libros)
 
         if (id != -1) {
-            val listView = findViewById<ListView>(R.id.lv_libros)
+
             adaptador = ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1,arrayAux
-                //libroDAO.getLista(id!!)
+                android.R.layout.simple_list_item_1,
+                libroDAO.getLista(id!!)
             )
             listView.adapter = adaptador
 
@@ -70,9 +71,15 @@ class LibrosActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("¿Está seguro de que desea eliminar el libro?")
         builder.setPositiveButton("Sí") { dialog, which ->
-            val libroEliminado = libroDAO.getLista().get(idItemSeleccionado)
-            if (libroDAO.delete(libroEliminado.getId())) {
-                adaptador.remove(libroEliminado)
+            val autorEliminado = libroDAO.getLista()[idItemSeleccionado]
+            if (libroDAO.delete(autorEliminado.getId())) {
+
+                adaptador = ArrayAdapter(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    libroDAO.getLista(id!!)
+                )
+                listView.adapter = adaptador
                 adaptador.notifyDataSetChanged()
             }
         }
