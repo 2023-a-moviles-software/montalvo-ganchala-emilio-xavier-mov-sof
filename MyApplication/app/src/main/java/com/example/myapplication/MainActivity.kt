@@ -77,8 +77,10 @@ open class MainActivity : AppCompatActivity() {
             irActividad(HFirebaseUIAuth::class.java)
         }
 
-
-
+        val botonIFirestore=findViewById<Button>(R.id.btn_intent_firestore)
+        botonIFirestore.setOnClickListener {
+            irActividad(IFirestore::class.java)
+        }
 
 
         val callbackIntentPickUri=
@@ -119,6 +121,7 @@ open class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("nombre","Adrian")
         intentExplicito.putExtra("apellido","Eguez")
         intentExplicito.putExtra("edad",30)
+        intentExplicito.putExtra("entrenador",BEntrenador(1,"Adrian","Entrenador"))
 
         callbackContenidoIntentExplicito.launch(intentExplicito)
     }

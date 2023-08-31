@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExamenB1</string>
+    <string name="str_crear">Crear</string>
+    <string name="title_activity_pokemon">ActivityPokemon</string>
+</resources>
