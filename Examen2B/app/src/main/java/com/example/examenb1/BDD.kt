@@ -5,5 +5,7 @@ class BDD {
     companion object{
         var autorDAO: AutorDAO?=null
         var libroDAO: LibroDAO?=null
+
+
     }
 }

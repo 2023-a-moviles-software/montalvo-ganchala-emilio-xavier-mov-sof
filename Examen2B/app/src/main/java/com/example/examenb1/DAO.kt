@@ -12,6 +12,6 @@ abstract class DAO<T>(
     abstract fun add(t:T):Unit
     abstract fun edit(t:T):Unit
     abstract fun get(id: Int):T?
-    abstract fun getLista(): List<T>
+    abstract fun getLista(): MutableList<T>
 
 }

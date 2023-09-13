@@ -1,103 +1,131 @@
 package com.example.examenb1
 
 import android.content.Context
-import com.google.firebase.database.*
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import java.time.LocalDate
+
 
 class AutorDAO(context: Context?) : DAO<Autor>(context) {
-    private val databaseReference: DatabaseReference =
-        FirebaseDatabase.getInstance().getReference("autores")
+    private val databaseReference: CollectionReference =  Firebase.firestore.collection("autores")
+    companion object{
+        var listaLocal= mutableListOf<Autor>()
 
+    }
     override fun add(autor: Autor) {
-        val autorId = databaseReference.push().key
-        if (autorId != null) {
-            autor.setId((System.currentTimeMillis() % 10000).toInt()) // Usar el setter para establecer el ID.
+
+            autor.setId((System.currentTimeMillis() % 100000).toInt()) // Usar el setter para establecer el ID.
             val autorData = HashMap<String, Any>()
             autorData["nombre"] = autor.getNombre()
             autorData["apellido"] = autor.getApellido()
             autorData["fechaNacimiento"] = autor.getFechaNacimiento().toString()
-            autorData["genero"] = autor.getGenero()
+            autorData["genero"] = autor.getGenero().toString()
             autorData["nacionalidad"] = autor.getNacionalidad()
 
-            databaseReference.child(autorId).setValue(autorData)
-        }
+            databaseReference.document(autor.getId().toString())
+                .set(autorData)
+                .addOnSuccessListener {  }
+                .addOnFailureListener {  }
+
     }
 
     override fun delete(id: Int): Boolean {
-        val autorId = id.toString()
-        databaseReference.child(autorId).removeValue()
-        // Aquí podrías agregar lógica adicional para manejar el resultado de eliminación si es necesario.
+        var flag=false;
+        databaseReference.document(id.toString())
+            .delete()
+            .addOnSuccessListener { flag=true }
+            .addOnFailureListener {  }
         return true
     }
 
     override fun edit(autor: Autor) {
-        val autorId = autor.getId().toString()
-        val autorMap = HashMap<String, Any>()
-        autorMap["nombre"] = autor.getNombre()
-        autorMap["apellido"] = autor.getApellido()
-        autorMap["fechaNacimiento"] = autor.getFechaNacimiento().toString()
-        autorMap["genero"] = autor.getGenero().toString()
-        autorMap["nacionalidad"] = autor.getNacionalidad()
 
-        databaseReference.child(autorId).updateChildren(autorMap)
+        val autorData = HashMap<String, Any>()
+        autorData["nombre"] = autor.getNombre()
+        autorData["apellido"] = autor.getApellido()
+        autorData["fechaNacimiento"] = autor.getFechaNacimiento().toString()
+        autorData["genero"] = autor.getGenero().toString()
+        autorData["nacionalidad"] = autor.getNacionalidad()
+
+        databaseReference.document(autor.getId().toString())
+            .set(autorData)
+            .addOnSuccessListener {  }
+            .addOnFailureListener {  }
     }
 
     override fun get(id: Int): Autor? {
-        val autorId = id.toString()
-        var autorEncontrado: Autor? = null
+        var autorAux:Autor?=null
+        databaseReference.document(id.toString()).get().addOnSuccessListener{document ->
+            val data = document.data
+            val autorA= Autor(
+                document.id.toInt(),
+                data?.get("nombre") as String,
+                data.get("apellido") as String,
+                LocalDate.parse(data.get("fechaNacimiento") as String),
+                (data.get("genero") as String)[0],
+                data.get("nacionalidad") as String
+            )
+            autorAux=autorA
+        }.addOnFailureListener{
 
-        databaseReference.child(autorId).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val autorData = dataSnapshot.getValue(Autor::class.java)
-                if (autorData != null) {
-                    autorEncontrado = autorData
-                }
-            }
+        }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Maneja errores aquí
-            }
-        })
+        if (autorAux==null){
+            autorAux=listaLocal.find { it.getId()==id }
+        }
 
-        return autorEncontrado
+        return autorAux
     }
 
-    override fun getLista(): List<Autor> {
-        val listaAutores = mutableListOf<Autor>()
+    override fun getLista(): MutableList<Autor> {
 
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (snapshot in dataSnapshot.children) {
-                    val autorData = snapshot.getValue(Autor::class.java)
-                    if (autorData != null) {
-                        listaAutores.add(autorData)
-                    }
-                }
+
+        val listaAutores:MutableList<Autor> = mutableListOf<Autor>()
+        databaseReference.get().addOnSuccessListener {
+            documents ->
+            for (document in documents){
+                val data = document.data
+
+                val autorAux= Autor(
+                    document.id.toInt(),
+                    data.get("nombre") as String,
+                    data.get("apellido") as String,
+                    LocalDate.parse(data.get("fechaNacimiento") as String),
+                    (data.get("genero") as String)[0],
+                    data.get("nacionalidad") as String
+                )
+
+                listaAutores.add(autorAux)
             }
+            listaLocal=listaAutores
+        }.addOnFailureListener{ex ->
+            println( ex.toString())
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Maneja errores aquí
-            }
-        })
+        }
+        println("******************************************")
+        println( listaAutores.size)
 
-        return listaAutores
+
+        return listaLocal
     }
 
     fun existe(id: Int): Boolean {
-        val autorId = id.toString()
-        var existeAutor = false
-
-        databaseReference.child(autorId).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                existeAutor = dataSnapshot.exists()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Maneja errores aquí
-            }
-        })
-
-        return existeAutor
+        var flag=false;
+        databaseReference.document(id.toString())
+            .delete()
+            .addOnSuccessListener { flag=true }
+            .addOnFailureListener {  }
+        return flag
     }
+
+
 }
 
 

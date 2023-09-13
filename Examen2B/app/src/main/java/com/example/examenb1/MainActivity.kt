@@ -52,6 +52,18 @@ class MainActivity : AppCompatActivity() {
             irActividad(FormularioAutor::class.java)
         }
 
+        val botonActualizar = findViewById<Button>(R.id.btn_actualizar_autores)
+        botonActualizar.setOnClickListener{
+            adaptador = ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_1,
+                autorDAO.getLista()
+            )
+            onRestart()
+            listView.adapter = adaptador
+            adaptador.notifyDataSetChanged()
+        }
+
         registerForContextMenu(listView)
     }
 
