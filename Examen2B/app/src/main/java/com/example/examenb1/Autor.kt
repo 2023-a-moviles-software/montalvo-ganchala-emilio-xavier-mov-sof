@@ -4,6 +4,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class Autor{
+    var idfirebase:String = ""
     private var id: Int = 0
     private var nombre: String = ""
     private var apellido: String = ""

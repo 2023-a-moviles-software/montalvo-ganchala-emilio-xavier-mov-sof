@@ -1,154 +1,103 @@
 package com.example.examenb1
 
-import android.content.ContentValues
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import java.time.LocalDate
+import com.google.firebase.database.*
 
 class AutorDAO(context: Context?) : DAO<Autor>(context) {
-
-    override fun onCreate(db: SQLiteDatabase?) {
-        val scriptSQLCrearTablaAutor =
-            """
-                CREATE TABLE AUTOR(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nombre VARCHAR(50),
-                    apellido VARCHAR(50),
-                    fechaNacimiento VARCHAR(50),
-                    genero CHAR(1),
-                    nacionalidad VARCHAR(50)
-                )
-            """.trimIndent()
-        db?.execSQL(scriptSQLCrearTablaAutor)
-        val crearTablaLibro =
-            """
-                CREATE TABLE LIBRO(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    titulo VARCHAR(50),
-                    editorial VARCHAR(50),
-                    fechaPublicacion VARCHAR(50),
-                    disponible INTEGER,
-                    precio REAL,
-                    idAutor INTEGER,
-                    FOREIGN KEY(idAutor) REFERENCES AUTOR(id) ON DELETE CASCADE
-                )
-            """.trimIndent()
-        db?.execSQL(crearTablaLibro)
-    }
-
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // Lógica de actualización de base de datos (si es necesario)
-    }
+    private val databaseReference: DatabaseReference =
+        FirebaseDatabase.getInstance().getReference("autores")
 
     override fun add(autor: Autor) {
-        val baseDatosEscritura = writableDatabase
-        val valoresAGuardar = ContentValues()
-        valoresAGuardar.put("nombre", autor.getNombre())
-        valoresAGuardar.put("apellido", autor.getApellido())
-        valoresAGuardar.put("fechaNacimiento", autor.getFechaNacimiento().toString())
-        valoresAGuardar.put("genero", autor.getGenero().toString())
-        valoresAGuardar.put("nacionalidad", autor.getNacionalidad())
+        val autorId = databaseReference.push().key
+        if (autorId != null) {
+            autor.setId(autorId.toInt()) // Usar el setter para establecer el ID.
+            val autorData = HashMap<String, Any>()
+            autorData["nombre"] = autor.getNombre()
+            autorData["apellido"] = autor.getApellido()
+            autorData["fechaNacimiento"] = autor.getFechaNacimiento().toString()
+            autorData["genero"] = autor.getGenero()
+            autorData["nacionalidad"] = autor.getNacionalidad()
 
-        baseDatosEscritura.insert("AUTOR", null, valoresAGuardar)
-        baseDatosEscritura.close()
+            databaseReference.child(autorId).setValue(autorData)
+        }
     }
 
     override fun delete(id: Int): Boolean {
-        val conexionEscritura = writableDatabase
-        val parametrosConsultaDelete = arrayOf(id.toString())
-        val resultadoEliminacion = conexionEscritura.delete(
-            "AUTOR",
-            "id=?",
-            parametrosConsultaDelete
-        )
-        conexionEscritura.close()
-        return resultadoEliminacion != -1
+        val autorId = id.toString()
+        databaseReference.child(autorId).removeValue()
+        // Aquí podrías agregar lógica adicional para manejar el resultado de eliminación si es necesario.
+        return true
     }
 
     override fun edit(autor: Autor) {
-        val conexionEscritura = writableDatabase
-        val valoresAActualizar = ContentValues()
-        valoresAActualizar.put("nombre", autor.getNombre())
-        valoresAActualizar.put("apellido", autor.getApellido())
-        valoresAActualizar.put("fechaNacimiento", autor.getFechaNacimiento().toString())
-        valoresAActualizar.put("genero", autor.getGenero().toString())
-        valoresAActualizar.put("nacionalidad", autor.getNacionalidad())
+        val autorId = autor.getId().toString()
+        val autorMap = HashMap<String, Any>()
+        autorMap["nombre"] = autor.getNombre()
+        autorMap["apellido"] = autor.getApellido()
+        autorMap["fechaNacimiento"] = autor.getFechaNacimiento().toString()
+        autorMap["genero"] = autor.getGenero().toString()
+        autorMap["nacionalidad"] = autor.getNacionalidad()
 
-        val parametrosConsultaActualizar = arrayOf(autor.getId().toString())
-        val resultadoActualizacion = conexionEscritura.update(
-            "AUTOR",
-            valoresAActualizar,
-            "id=?",
-            parametrosConsultaActualizar
-        )
-        conexionEscritura.close()
+        databaseReference.child(autorId).updateChildren(autorMap)
     }
 
     override fun get(id: Int): Autor? {
-        val baseDatosLectura = readableDatabase
-        val scriptConsultaLectura = """
-            SELECT * FROM AUTOR WHERE id = ?
-        """.trimIndent()
-        val parametrosConsultaLectura = arrayOf(id.toString())
-        val resultadoConsultaLectura = baseDatosLectura.rawQuery(
-            scriptConsultaLectura,
-            parametrosConsultaLectura
-        )
+        val autorId = id.toString()
+        var autorEncontrado: Autor? = null
 
-        val autorEncontrado: Autor?
-        if (resultadoConsultaLectura.moveToFirst()) {
-            val id = resultadoConsultaLectura.getInt(0)
-            val nombre = resultadoConsultaLectura.getString(1)
-            val apellido = resultadoConsultaLectura.getString(2)
-            val fechaNacimientoStr = resultadoConsultaLectura.getString(3)
-            val genero = resultadoConsultaLectura.getString(4)
-            val nacionalidad = resultadoConsultaLectura.getString(5)
+        databaseReference.child(autorId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val autorData = dataSnapshot.getValue(Autor::class.java)
+                if (autorData != null) {
+                    autorEncontrado = autorData
+                }
+            }
 
-            val fechaNacimiento = LocalDate.parse(fechaNacimientoStr)
-            autorEncontrado = Autor(id, nombre, apellido, fechaNacimiento, genero[0], nacionalidad)
-        } else {
-            autorEncontrado = null
-        }
-
-        resultadoConsultaLectura.close()
-        baseDatosLectura.close()
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Maneja errores aquí
+            }
+        })
 
         return autorEncontrado
     }
 
     override fun getLista(): List<Autor> {
-        val baseDatosLectura = readableDatabase
-        val scriptConsultaLectura = """
-            SELECT * FROM AUTOR
-        """.trimIndent()
-
-        val resultadoConsultaLectura = baseDatosLectura.rawQuery(
-            scriptConsultaLectura,
-            null
-        )
-
         val listaAutores = mutableListOf<Autor>()
 
-        while (resultadoConsultaLectura.moveToNext()) {
-            val id = resultadoConsultaLectura.getInt(0)
-            val nombre = resultadoConsultaLectura.getString(1)
-            val apellido = resultadoConsultaLectura.getString(2)
-            val fechaNacimientoStr = resultadoConsultaLectura.getString(3)
-            val genero = resultadoConsultaLectura.getString(4)
-            val nacionalidad = resultadoConsultaLectura.getString(5)
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (snapshot in dataSnapshot.children) {
+                    val autorData = snapshot.getValue(Autor::class.java)
+                    if (autorData != null) {
+                        listaAutores.add(autorData)
+                    }
+                }
+            }
 
-            val fechaNacimiento = LocalDate.parse(fechaNacimientoStr)
-            val autor = Autor(id, nombre, apellido, fechaNacimiento, genero[0], nacionalidad)
-            listaAutores.add(autor)
-        }
-
-        resultadoConsultaLectura.close()
-        baseDatosLectura.close()
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Maneja errores aquí
+            }
+        })
 
         return listaAutores
     }
 
     fun existe(id: Int): Boolean {
-        return get(id) != null
+        val autorId = id.toString()
+        var existeAutor = false
+
+        databaseReference.child(autorId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                existeAutor = dataSnapshot.exists()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Maneja errores aquí
+            }
+        })
+
+        return existeAutor
     }
 }
+
+

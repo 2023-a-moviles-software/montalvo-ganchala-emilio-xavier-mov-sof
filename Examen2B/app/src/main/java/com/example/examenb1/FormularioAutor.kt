@@ -119,7 +119,7 @@ class FormularioAutor : AppCompatActivity() {
                     }
 
                 }catch (e:Exception){
-                    abrirDialogo("Los datos no estan en el formato correcto")
+                    abrirDialogo(e.toString())
                 }
 
             }

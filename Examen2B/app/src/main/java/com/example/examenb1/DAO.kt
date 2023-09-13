@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 abstract class DAO<T>(
     context: Context?,
-) : SQLiteOpenHelper(context, "moviles", null, 1) {
+){
 
     abstract fun delete(id: Int): Boolean
     abstract fun add(t:T):Unit
