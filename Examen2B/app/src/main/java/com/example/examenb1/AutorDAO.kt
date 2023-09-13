@@ -10,7 +10,7 @@ class AutorDAO(context: Context?) : DAO<Autor>(context) {
     override fun add(autor: Autor) {
         val autorId = databaseReference.push().key
         if (autorId != null) {
-            autor.setId(autorId.toInt()) // Usar el setter para establecer el ID.
+            autor.setId((System.currentTimeMillis() % 10000).toInt()) // Usar el setter para establecer el ID.
             val autorData = HashMap<String, Any>()
             autorData["nombre"] = autor.getNombre()
             autorData["apellido"] = autor.getApellido()
