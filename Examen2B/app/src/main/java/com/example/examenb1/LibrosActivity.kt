@@ -51,6 +51,18 @@ class LibrosActivity : AppCompatActivity() {
             }
 
             registerForContextMenu(listView)
+
+            val botonActualizar = findViewById<Button>(R.id.btn_actualizar_libros)
+            botonActualizar.setOnClickListener{
+                adaptador = ArrayAdapter(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    libroDAO.getLista(id!!)
+                )
+                onRestart()
+                listView.adapter = adaptador
+                adaptador.notifyDataSetChanged()
+            }
         }
     }
 
@@ -71,7 +83,7 @@ class LibrosActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("¿Está seguro de que desea eliminar el libro?")
         builder.setPositiveButton("Sí") { dialog, which ->
-            val libroEliminado = libroDAO.getLista()[idItemSeleccionado]
+            val libroEliminado = libroDAO.getLista(id!!)[idItemSeleccionado]
             if (libroDAO.delete(libroEliminado.getId())) {
 
                 adaptador = ArrayAdapter(

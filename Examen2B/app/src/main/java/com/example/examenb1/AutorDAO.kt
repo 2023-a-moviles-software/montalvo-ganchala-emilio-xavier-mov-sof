@@ -1,14 +1,10 @@
 package com.example.examenb1
 
 import android.content.Context
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
+
 
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import java.time.LocalDate
 
@@ -109,7 +105,6 @@ class AutorDAO(context: Context?) : DAO<Autor>(context) {
             println( ex.toString())
 
         }
-        println("******************************************")
         println( listaAutores.size)
 
 
@@ -119,9 +114,15 @@ class AutorDAO(context: Context?) : DAO<Autor>(context) {
     fun existe(id: Int): Boolean {
         var flag=false;
         databaseReference.document(id.toString())
-            .delete()
+            .get()
             .addOnSuccessListener { flag=true }
             .addOnFailureListener {  }
+
+        if(!flag){
+            flag=listaLocal.any({autor: Autor -> autor.getId()==id})
+        }
+
+
         return flag
     }
 

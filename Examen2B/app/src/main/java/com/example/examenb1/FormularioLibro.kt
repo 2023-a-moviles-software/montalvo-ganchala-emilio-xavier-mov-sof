@@ -94,6 +94,7 @@ class FormularioLibro : AppCompatActivity() {
                             }
                         }
                     } catch (e: Exception) {
+                        println(e.stackTrace)
                         abrirDialogo("Los datos no están en el formato correcto")
                     }
                 }
